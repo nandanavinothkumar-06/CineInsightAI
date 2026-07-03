@@ -1,0 +1,34 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports
+reports/*.pdf
+reports/*.csv
+
+# Database (if generated locally)
+*.db
+instance/
+
+# Environment variables
+.env
+
+# Build
+dist/
+build/

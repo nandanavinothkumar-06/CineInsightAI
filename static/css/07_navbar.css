@@ -1,0 +1,229 @@
+/* =====================================================
+   CineInsight AI Navbar
+   ===================================================== */
+
+/* Navbar */
+
+.navbar {
+
+    position: fixed;
+
+    top: 20px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(95%, 1350px);
+
+    padding: .9rem 2rem;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: var(--z-navbar);
+
+    background: rgba(15,23,42,.65);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: var(--radius-round);
+
+    box-shadow: var(--shadow-lg);
+
+    transition: var(--transition-normal);
+}
+
+/* Logo */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .8rem;
+
+    font-size: 1.35rem;
+
+    font-weight: var(--fw-bold);
+
+    color: white;
+}
+
+.logo img {
+
+    width: 42px;
+
+    height: 42px;
+
+    object-fit: contain;
+}
+
+/* Navigation */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 2rem;
+}
+
+.nav-links a {
+
+    position: relative;
+
+    color: var(--text-secondary);
+
+    font-weight: var(--fw-medium);
+
+    transition: var(--transition-fast);
+}
+
+/* Hover */
+
+.nav-links a:hover {
+
+    color: white;
+}
+
+/* Animated Underline */
+
+.nav-links a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -8px;
+
+    width: 0;
+
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+
+    transition: .35s;
+}
+
+.nav-links a:hover::after {
+
+    width: 100%;
+}
+
+/* Active Link */
+
+.nav-links .active {
+
+    color: white;
+}
+
+.nav-links .active::after {
+
+    width: 100%;
+}
+
+/* Right Section */
+
+.nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+}
+
+/* Theme Button */
+
+.theme-btn {
+
+    width: 44px;
+
+    height: 44px;
+
+    border-radius: 50%;
+
+    background: var(--glass-bg);
+
+    border: 1px solid var(--glass-border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: var(--transition-normal);
+}
+
+.theme-btn:hover {
+
+    transform: rotate(180deg);
+
+    box-shadow: var(--shadow-glow);
+}
+
+/* Login Button */
+
+.login-btn {
+
+    padding: .8rem 1.5rem;
+
+    border-radius: var(--radius-round);
+
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color: white;
+
+    font-weight: var(--fw-semibold);
+
+    transition: var(--transition-normal);
+}
+
+.login-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-glow);
+}
+
+/* Mobile Menu */
+
+.menu-btn {
+
+    display: none;
+
+    font-size: 1.6rem;
+
+    color: white;
+
+    cursor: pointer;
+}

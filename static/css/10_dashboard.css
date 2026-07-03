@@ -1,0 +1,290 @@
+/* =====================================================
+   CineInsight AI Dashboard
+   ===================================================== */
+
+/* Dashboard */
+
+.dashboard {
+
+    padding-top: 120px;
+
+    padding-bottom: var(--space-8);
+}
+
+/* Dashboard Header */
+
+.dashboard-header {
+
+    margin-bottom: var(--space-7);
+
+    text-align: center;
+}
+
+.dashboard-title {
+
+    margin-bottom: .5rem;
+}
+
+.dashboard-subtitle {
+
+    color: var(--text-muted);
+}
+
+/* KPI Cards */
+
+.stats-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(4,1fr);
+
+    gap: var(--space-5);
+
+    margin-bottom: var(--space-8);
+}
+
+.stat-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    transition: var(--transition-normal);
+}
+
+.stat-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        var(--shadow-glow),
+        var(--shadow-lg);
+}
+
+.stat-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -40px;
+
+    right: -40px;
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.05);
+}
+
+.stat-icon {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 1.8rem;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+    margin-bottom: var(--space-4);
+}
+
+.stat-number {
+
+    font-size: 2.7rem;
+
+    font-weight: var(--fw-bold);
+
+    color: white;
+}
+
+.stat-label {
+
+    color: var(--text-muted);
+
+    margin-top: .4rem;
+}
+
+/* Charts */
+
+.chart-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: var(--space-6);
+
+    margin-bottom: var(--space-8);
+}
+
+.chart-card {
+
+    min-height: 470px;
+}
+
+/* Large Chart */
+
+.chart-full {
+
+    grid-column: 1/-1;
+}
+
+/* Wordcloud */
+
+.wordcloud-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: var(--space-6);
+
+    margin-bottom: var(--space-8);
+}
+
+.wordcloud-card img {
+
+    width: 100%;
+
+    border-radius: var(--radius-md);
+}
+
+/* Recent Predictions */
+
+.recent-section {
+
+    margin-top: var(--space-8);
+}
+
+.recent-table {
+
+    width: 100%;
+}
+
+.recent-table th {
+
+    color: var(--text-muted);
+
+    text-align: left;
+
+    padding: 1rem;
+}
+
+.recent-table td {
+
+    padding: 1rem;
+
+    border-top: 1px solid
+        var(--border-color);
+}
+
+.recent-table tr {
+
+    transition: .3s;
+}
+
+.recent-table tr:hover {
+
+    background:
+        rgba(255,255,255,.03);
+}
+
+/* Sentiment Badges */
+
+.badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: .45rem .9rem;
+
+    border-radius: 999px;
+
+    font-size: .85rem;
+
+    font-weight: 600;
+}
+
+.badge-positive {
+
+    background:
+        rgba(16,185,129,.18);
+
+    color:
+        var(--success);
+}
+
+.badge-negative {
+
+    background:
+        rgba(239,68,68,.18);
+
+    color:
+        var(--danger);
+}
+
+/* Dashboard Message */
+
+.dashboard-message {
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    padding: 2rem;
+}
+
+/* Empty State */
+
+.empty-dashboard {
+
+    text-align: center;
+
+    padding: 5rem 2rem;
+}
+
+.empty-dashboard img {
+
+    width: 280px;
+
+    margin: auto;
+
+    margin-bottom: 2rem;
+}
+
+/* Fade Animation */
+
+.chart-card,
+.stat-card {
+
+    animation:
+        fadeIn .7s ease;
+}

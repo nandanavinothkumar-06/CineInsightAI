@@ -1,0 +1,179 @@
+/* =====================================================
+   CineInsight AI Typography
+   ===================================================== */
+
+/* Google Font */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
+/* Body */
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--fs-md);
+    font-weight: var(--fw-normal);
+    color: var(--text-primary);
+    line-height: 1.7;
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-primary);
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: var(--fs-4xl);
+}
+
+h2 {
+    font-size: var(--fs-3xl);
+}
+
+h3 {
+    font-size: var(--fs-2xl);
+}
+
+h4 {
+    font-size: var(--fs-xl);
+}
+
+h5 {
+    font-size: var(--fs-lg);
+}
+
+h6 {
+    font-size: var(--fs-md);
+}
+
+/* Paragraph */
+
+p {
+    color: var(--text-secondary);
+    font-size: var(--fs-md);
+    margin-bottom: var(--space-4);
+}
+
+/* Labels */
+
+label {
+    display: inline-block;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+/* Small Text */
+
+small {
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+}
+
+/* Strong */
+
+strong {
+    font-weight: var(--fw-bold);
+}
+
+/* Code */
+
+code {
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-light);
+    color: var(--accent);
+    font-size: .9em;
+}
+
+/* Blockquote */
+
+blockquote {
+    margin: var(--space-5) 0;
+    padding-left: var(--space-4);
+    border-left: 4px solid var(--primary);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Utility Classes */
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-secondary {
+    color: var(--secondary);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-bold {
+    font-weight: var(--fw-bold);
+}
+
+.text-medium {
+    font-weight: var(--fw-medium);
+}
+
+.text-light {
+    font-weight: var(--fw-light);
+}
+
+/* Gradient Heading */
+
+.gradient-text {
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary),
+        var(--accent)
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}

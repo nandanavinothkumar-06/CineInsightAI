@@ -1,0 +1,142 @@
+/* =====================================================
+   CineInsight AI Responsive
+   ===================================================== */
+
+/* Large Laptop */
+
+@media (max-width: 1400px){
+
+    .container{
+        width:min(96%,1200px);
+    }
+
+}
+
+/* Laptop */
+
+@media (max-width:1200px){
+
+    .grid-4{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid-3{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+/* Tablet */
+
+@media (max-width:992px){
+
+    .navbar{
+
+        width:95%;
+
+        padding:1rem 1.5rem;
+
+    }
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+    .menu-btn{
+
+        display:flex;
+
+    }
+
+    .hero{
+
+        padding:120px 20px 80px;
+
+    }
+
+    h1{
+
+        font-size:3rem;
+
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    .grid,
+    .grid-2,
+    .grid-3,
+    .grid-4{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .flex-between{
+
+        flex-direction:column;
+
+        gap:1rem;
+
+    }
+
+    .section{
+
+        padding:4rem 0;
+
+    }
+
+    h1{
+
+        font-size:2.5rem;
+
+    }
+
+    h2{
+
+        font-size:2rem;
+
+    }
+
+    .card{
+
+        padding:1.5rem;
+
+    }
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+    body{
+
+        font-size:.95rem;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+    }
+
+    .navbar{
+
+        padding:.8rem 1rem;
+
+    }
+
+    .logo span{
+
+        display:none;
+
+    }
+
+}

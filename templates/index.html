@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>CineInsight AI</title>
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Custom CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container py-5">
+
+<div class="card shadow-lg border-0 main-card p-5">
+
+<!-- ================================================= -->
+<!-- HERO -->
+<!-- ================================================= -->
+
+<div class="text-center mb-5">
+
+<i
+class="fa-solid fa-film display-1 text-primary mb-3">
+</i>
+
+<h1 class="display-4 fw-bold">
+
+🎬 CineInsight AI
+
+</h1>
+
+<p class="lead text-muted">
+
+AI-Powered Movie Review Intelligence Platform
+
+</p>
+
+<p class="text-secondary">
+
+Machine Learning • Deep Learning • NLP • Explainable AI • Data Analytics
+
+</p>
+
+</div>
+
+<!-- ================================================= -->
+<!-- TECHNOLOGY SHOWCASE -->
+<!-- ================================================= -->
+
+<div class="row g-4 mb-5">
+
+<div class="col-lg-3 col-md-6">
+
+<div class="feature-card">
+
+<div class="text-center">
+
+<i class="fa-solid fa-brain fa-3x text-primary mb-3"></i>
+
+<h4>
+
+Machine Learning
+
+</h4>
+
+</div>
+
+<hr>
+
+<ul class="small">
+
+<li>Logistic Regression</li>
+
+<li>Naive Bayes</li>
+
+<li>Linear SVC</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="feature-card">
+
+<div class="text-center">
+
+<i class="fa-solid fa-robot fa-3x text-success mb-3"></i>
+
+<h4>
+
+Deep Learning
+
+</h4>
+
+</div>
+
+<hr>
+
+<ul class="small">
+
+<li>BERT Transformer</li>
+
+<li>Context Understanding</li>
+
+<li>High Accuracy</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="feature-card">
+
+<div class="text-center">
+
+<i class="fa-solid fa-language fa-3x text-warning mb-3"></i>
+
+<h4>
+
+Natural Language Processing
+
+</h4>
+
+</div>
+
+<hr>
+
+<ul class="small">
+
+<li>Emotion Detection</li>
+
+<li>Aspect Analysis</li>
+
+<li>Text Processing</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6">
+
+<div class="feature-card">
+
+<div class="text-center">
+
+<i class="fa-solid fa-chart-line fa-3x text-danger mb-3"></i>
+
+<h4>
+
+Analytics
+
+</h4>
+
+</div>
+
+<hr>
+
+<ul class="small">
+
+<li>Interactive Dashboard</li>
+
+<li>Business Insights</li>
+
+<li>PDF Reports</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- PROJECT SUMMARY -->
+<!-- ================================================= -->
+
+<div class="alert alert-light shadow-sm mb-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-9">
+
+<h4>
+
+🚀 About CineInsight AI
+
+</h4>
+
+<p class="mb-0">
+
+CineInsight AI combines Machine Learning,
+Deep Learning,
+Natural Language Processing,
+Explainable AI,
+and Data Analytics
+to analyse movie reviews,
+understand audience opinions,
+and generate actionable insights.
+
+</p>
+
+</div>
+
+<div class="col-lg-3 text-center">
+
+<h1 class="text-primary">
+
+4
+
+</h1>
+
+<p>
+
+Prediction Models
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- REVIEW INPUT -->
+<!-- ================================================= -->
+
+<div class="card border-0 shadow-sm p-4 mb-5">
+
+<h3 class="mb-4">
+
+📝 Analyze Movie Review
+
+</h3>
+
+<form
+action="{{ url_for('prediction.predict') }}"
+method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Movie Name
+
+</label>
+
+<input
+
+type="text"
+
+name="movie_name"
+
+class="form-control"
+
+placeholder="Example: Tourist Family"
+
+value="{{ movie_name if movie_name is defined else '' }}"
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label">
+
+Movie Review
+
+</label>
+
+<textarea
+
+rows="8"
+
+name="review"
+
+class="form-control"
+
+placeholder="Write your movie review here...">{% if review is defined %}{{ review }}{% endif %}</textarea>
+
+</div>
+
+<div class="d-grid">
+
+<button
+class="btn btn-primary btn-lg">
+
+<i class="fa-solid fa-magnifying-glass-chart"></i>
+
+Analyze Review
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+<!-- ================================================= -->
+<!-- AI ANALYSIS REPORT -->
+<!-- ================================================= -->
+
+{% if prediction is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+    <h2 class="text-center mb-4">
+
+        🤖 AI Analysis Report
+
+    </h2>
+
+    <div class="row g-4">
+
+        <!-- Final Prediction -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>
+
+                        Final Prediction
+
+                    </h4>
+
+                    {% if prediction == "positive" %}
+
+                        <h1 class="text-success">
+
+                            😊 Positive
+
+                        </h1>
+
+                    {% else %}
+
+                        <h1 class="text-danger">
+
+                            😞 Negative
+
+                        </h1>
+
+                    {% endif %}
+
+                    <hr>
+
+                    <h5>
+
+                        Confidence
+
+                    </h5>
+
+                    <h2>
+
+                        {{ confidence }}%
+
+                    </h2>
+
+                    <div class="progress mt-3">
+
+                        <div
+
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+
+                            role="progressbar"
+
+                            style="width: {{ confidence }}%;"
+
+                            aria-valuenow="{{ confidence }}"
+
+                            aria-valuemin="0"
+
+                            aria-valuemax="100">
+
+                            {{ confidence }}%
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Highest Confidence Model -->
+
+        <div class="col-lg-6">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <h4>
+
+                        🏆 Highest Confidence Model
+
+                    </h4>
+
+                    <h2>
+
+                        {{ best_model["model"] }}
+
+                    </h2>
+
+                    <p class="text-muted">
+
+                        Prediction
+
+                    </p>
+
+                    {% if best_model["prediction"] == "positive" %}
+
+                        <span class="badge bg-success fs-6">
+
+                            Positive
+
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-danger fs-6">
+
+                            Negative
+
+                        </span>
+
+                    {% endif %}
+
+                    <hr>
+
+                    <h3>
+
+                        {{ best_model["confidence"] }}%
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- MODEL COMPARISON -->
+<!-- ================================================= -->
+
+<div class="card shadow-sm border-0 p-4 mb-5">
+
+    <h3 class="mb-4">
+
+        📊 Machine Learning Model Comparison
+
+    </h3>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Model</th>
+
+                    <th>Prediction</th>
+
+                    <th>Confidence</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for model, data in predictions.items() %}
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+
+                            {{ model }}
+
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        {% if data["prediction"] == "positive" %}
+
+                            <span class="badge bg-success">
+
+                                Positive
+
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-danger">
+
+                                Negative
+
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {{ data["confidence"] }}%
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- MODEL CONSENSUS -->
+<!-- ================================================= -->
+
+<div class="card shadow-sm border-0 p-4 mb-5">
+
+    <h3 class="mb-4">
+
+        🤝 Model Consensus
+
+    </h3>
+
+    <div class="row text-center">
+
+        <div class="col-md-4">
+
+            <h2>
+
+                {{ consensus["agreement"] }}/{{ consensus["total"] }}
+
+            </h2>
+
+            <p>
+
+                Models Agree
+
+            </p>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <h2>
+
+                {{ consensus["percentage"] }}%
+
+            </h2>
+
+            <p>
+
+                Agreement
+
+            </p>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <h2>
+
+                {{ consensus["prediction"]|capitalize }}
+
+            </h2>
+
+            <p>
+
+                Final Decision
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- NLP PIPELINE VISUALIZATION -->
+<!-- ================================================= -->
+
+{% if nlp_pipeline is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+    <h2 class="text-center mb-4">
+
+        🧠 Natural Language Processing Pipeline
+
+    </h2>
+
+    <p class="text-center text-muted">
+
+        This section visualizes every preprocessing step performed before
+        Machine Learning and BERT sentiment prediction.
+
+    </p>
+
+    <div class="timeline">
+
+        <!-- Original -->
+
+        <div class="card shadow-sm border-0 mb-3">
+
+            <div class="card-body">
+
+                <h4>📝 Original Review</h4>
+
+                <hr>
+
+                <p>
+
+                    {{ nlp_pipeline.original }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Arrow -->
+
+        <div class="text-center fs-2 mb-3">
+
+            ⬇
+
+        </div>
+
+        <!-- Lowercase -->
+
+        <div class="card shadow-sm border-0 mb-3">
+
+            <div class="card-body">
+
+                <h4>🔡 Lowercase Conversion</h4>
+
+                <hr>
+
+                <p>
+
+                    {{ nlp_pipeline.lowercase }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="text-center fs-2 mb-3">
+
+            ⬇
+
+        </div>
+
+        <!-- Remove punctuation -->
+
+        <div class="card shadow-sm border-0 mb-3">
+
+            <div class="card-body">
+
+                <h4>✂ Remove Punctuation</h4>
+
+                <hr>
+
+                <p>
+
+                    {{ nlp_pipeline.no_punctuation }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="text-center fs-2 mb-3">
+
+            ⬇
+
+        </div>
+
+        <!-- Tokenization -->
+
+        <div class="card shadow-sm border-0 mb-3">
+
+            <div class="card-body">
+
+                <h4>🪙 Tokenization</h4>
+
+                <hr>
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    {% for token in nlp_pipeline.tokens %}
+
+                        <span class="badge bg-primary">
+
+                            {{ token }}
+
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center fs-2 mb-3">
+
+            ⬇
+
+        </div>
+
+        <!-- Stopword Removal -->
+
+        <div class="card shadow-sm border-0 mb-3">
+
+            <div class="card-body">
+
+                <h4>🚫 Stopword Removal</h4>
+
+                <hr>
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    {% for token in nlp_pipeline.filtered %}
+
+                        <span class="badge bg-success">
+
+                            {{ token }}
+
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center fs-2 mb-3">
+
+            ⬇
+
+        </div>
+
+        <!-- Lemmatization -->
+
+        <div class="card shadow-sm border-0 mb-3">
+
+            <div class="card-body">
+
+                <h4>🧩 Lemmatization</h4>
+
+                <hr>
+
+                <div class="d-flex flex-wrap gap-2">
+
+                    {% for token in nlp_pipeline.lemmatized %}
+
+                        <span class="badge bg-warning text-dark">
+
+                            {{ token }}
+
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center fs-2 mb-3">
+
+            ⬇
+
+        </div>
+
+        <!-- Final -->
+
+        <div class="card shadow border-success">
+
+            <div class="card-body">
+
+                <h4 class="text-success">
+
+                    ✅ Final Processed Text
+
+                </h4>
+
+                <hr>
+
+                <p class="fw-bold">
+
+                    {{ nlp_pipeline.processed_text }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- TEXT STATISTICS -->
+<!-- ================================================= -->
+
+{% if text_statistics is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+📊 NLP Text Statistics
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-lg-2 col-md-4">
+
+<div class="card shadow-sm text-center">
+
+<div class="card-body">
+
+<h1 class="text-primary">
+
+{{ text_statistics.characters }}
+
+</h1>
+
+<p>
+
+Characters
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4">
+
+<div class="card shadow-sm text-center">
+
+<div class="card-body">
+
+<h1 class="text-success">
+
+{{ text_statistics.words }}
+
+</h1>
+
+<p>
+
+Words
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4">
+
+<div class="card shadow-sm text-center">
+
+<div class="card-body">
+
+<h1 class="text-warning">
+
+{{ text_statistics.sentences }}
+
+</h1>
+
+<p>
+
+Sentences
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4">
+
+<div class="card shadow-sm text-center">
+
+<div class="card-body">
+
+<h1 class="text-danger">
+
+{{ text_statistics.unique_words }}
+
+</h1>
+
+<p>
+
+Unique Words
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4">
+
+<div class="card shadow-sm text-center">
+
+<div class="card-body">
+
+<h1 class="text-info">
+
+{{ text_statistics.avg_word_length }}
+
+</h1>
+
+<p>
+
+Avg Length
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-2 col-md-4">
+
+<div class="card shadow-sm text-center">
+
+<div class="card-body">
+
+<h1 class="text-dark">
+
+{{ text_statistics.reading_time }}
+
+</h1>
+
+<p>
+
+Reading Time
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- KEYWORD EXTRACTION -->
+<!-- ================================================= -->
+
+{% if keywords is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+🏷 NLP Keyword Extraction
+
+</h2>
+
+<p class="text-center text-muted">
+
+Most important keywords extracted from the review.
+
+</p>
+
+<div class="row">
+
+<div class="col-12">
+
+<div class="d-flex flex-wrap gap-3 justify-content-center">
+
+{% for word,count in keywords %}
+
+<span class="badge bg-primary fs-6 p-3">
+
+{{ word }}
+
+<span class="badge bg-light text-dark ms-2">
+
+{{ count }}
+
+</span>
+
+</span>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- WORD FREQUENCY -->
+<!-- ================================================= -->
+
+{% if word_frequency is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+📈 Word Frequency Analysis
+
+</h2>
+
+<p class="text-center text-muted">
+
+Most frequent words identified after preprocessing.
+
+</p>
+
+<table class="table table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>Word</th>
+
+<th>Frequency</th>
+
+<th>Visualization</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for word,count in word_frequency %}
+
+<tr>
+
+<td>
+
+<strong>
+
+{{ word }}
+
+</strong>
+
+</td>
+
+<td>
+
+{{ count }}
+
+</td>
+
+<td width="60%">
+
+<div class="progress">
+
+<div
+
+class="progress-bar bg-success"
+
+role="progressbar"
+
+style="width: {{ count*20 }}%;">
+
+{{ count }}
+
+</div>
+
+</div>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endif %}
+
+<!-- ============================================== -->
+<!-- EXPLAINABLE NLP -->
+<!-- ============================================== -->
+
+{% if explanation is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+🧠 Explainable NLP
+
+</h2>
+
+<div class="row">
+
+<div class="col-lg-4">
+
+<h4 class="text-success">
+
+😊 Positive Words
+
+</h4>
+
+{% for word in explanation.positive %}
+
+<span class="badge bg-success m-1">
+
+{{ word }}
+
+</span>
+
+{% endfor %}
+
+</div>
+
+<div class="col-lg-4">
+
+<h4 class="text-danger">
+
+😞 Negative Words
+
+</h4>
+
+{% for word in explanation.negative %}
+
+<span class="badge bg-danger m-1">
+
+{{ word }}
+
+</span>
+
+{% endfor %}
+
+</div>
+
+<div class="col-lg-4">
+
+<h4 class="text-secondary">
+
+📝 Other Words
+
+</h4>
+
+{% for word in explanation.neutral[:15] %}
+
+<span class="badge bg-secondary m-1">
+
+{{ word }}
+
+</span>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- EXPLAINABLE AI -->
+<!-- ================================================= -->
+
+{% if lr_xai %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+🧠 Explainable AI (Logistic Regression)
+
+</h2>
+
+<div class="row">
+
+<div class="col-lg-6">
+
+<h4 class="text-success">
+
+📈 Positive Features
+
+</h4>
+
+{% for word,value in lr_xai.positive %}
+
+<div class="mb-3">
+
+<strong>
+
+{{ word }}
+
+</strong>
+
+<div class="progress">
+
+<div
+
+class="progress-bar bg-success"
+
+style="width: {{ value*100 }}%;">
+
+{{ "%.3f"|format(value) }}
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="col-lg-6">
+
+<h4 class="text-danger">
+
+📉 Negative Features
+
+</h4>
+
+{% for word,value in lr_xai.negative %}
+
+<div class="mb-3">
+
+<strong>
+
+{{ word }}
+
+</strong>
+
+<div class="progress">
+
+<div
+
+class="progress-bar bg-danger"
+
+style="width: {{ (-value)*100 }}%;">
+
+{{ "%.3f"|format(value) }}
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- AI CONFIDENCE ANALYTICS -->
+<!-- ================================================= -->
+
+{% if confidence_dashboard %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+📊 AI Confidence Analytics
+
+</h2>
+
+<div class="row text-center g-4">
+
+<div class="col-lg-3">
+
+<div class="card h-100 border-success">
+
+<div class="card-body">
+
+<h1>
+
+🏆
+
+</h1>
+
+<h5>
+
+Best Model
+
+</h5>
+
+<h4>
+
+{{ confidence_dashboard.winner }}
+
+</h4>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card h-100 border-primary">
+
+<div class="card-body">
+
+<h1>
+
+📈
+
+</h1>
+
+<h5>
+
+Average Confidence
+
+</h5>
+
+<h3>
+
+{{ confidence_dashboard.average }}%
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card h-100 border-warning">
+
+<div class="card-body">
+
+<h1>
+
+⭐
+
+</h1>
+
+<h5>
+
+Highest Confidence
+
+</h5>
+
+<h3>
+
+{{ confidence_dashboard.highest }}%
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card h-100 border-danger">
+
+<div class="card-body">
+
+<h1>
+
+🛡
+
+</h1>
+
+<h5>
+
+Reliability
+
+</h5>
+
+<h3>
+
+{{ confidence_dashboard.reliability }}
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr class="my-4">
+
+<h4 class="text-center mb-4">
+
+Model Confidence Comparison
+
+</h4>
+
+{% for model, confidence in confidence_dashboard.confidences.items() %}
+
+<div class="mb-4">
+
+<div class="d-flex justify-content-between">
+
+<strong>
+
+{{ model }}
+
+</strong>
+
+<strong>
+
+{{ confidence }}%
+
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+
+class="progress-bar"
+
+style="width: {{ confidence }}%;">
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- PREDICTION RELIABILITY -->
+<!-- ================================================= -->
+
+{% if reliability %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center mb-4">
+
+🛡 Prediction Reliability Analysis
+
+</h2>
+
+<div class="row text-center g-4">
+
+<div class="col-lg-3">
+
+<div class="card h-100">
+
+<div class="card-body">
+
+<h1>
+
+{{ "⭐"*reliability.stars }}
+
+</h1>
+
+<h4>
+
+{{ reliability.reliability }}
+
+</h4>
+
+<p>
+
+Overall Reliability
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card h-100">
+
+<div class="card-body">
+
+<h2>
+
+{{ reliability.agreement }}%
+
+</h2>
+
+<p>
+
+Model Agreement
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card h-100">
+
+<div class="card-body">
+
+<h2>
+
+{{ reliability.spread }}%
+
+</h2>
+
+<p>
+
+Confidence Spread
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card h-100">
+
+<div class="card-body">
+
+<h2>
+
+{{ reliability.risk }}
+
+</h2>
+
+<p>
+
+Prediction Risk
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="alert
+
+{% if reliability.risk=="Very Low" %}
+
+alert-success
+
+{% elif reliability.risk=="Low" %}
+
+alert-primary
+
+{% elif reliability.risk=="Moderate" %}
+
+alert-warning
+
+{% else %}
+
+alert-danger
+
+{% endif %}
+
+mt-4">
+
+<h4>
+
+AI Recommendation
+
+</h4>
+
+{% if reliability.risk=="Very Low" %}
+
+The prediction is highly trustworthy because all models strongly agree with high confidence.
+
+{% elif reliability.risk=="Low" %}
+
+The prediction appears reliable with only minor differences between models.
+
+{% elif reliability.risk=="Moderate" %}
+
+Some disagreement exists between models. Interpret the result carefully.
+
+{% else %}
+
+Significant disagreement exists. Consider reviewing the input or collecting additional evidence.
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% if business_dashboard %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center">
+
+📊 Business Intelligence Dashboard
+
+</h2>
+
+<div class="row text-center g-4 mt-3">
+
+<div class="col-lg-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h2>
+
+{{ business_dashboard.total_reviews }}
+
+</h2>
+
+<p>
+
+Total Reviews
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h2>
+
+{{ business_dashboard.positive_percentage }}%
+
+</h2>
+
+<p>
+
+Positive Reviews
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h2>
+
+{{ business_dashboard.average_confidence }}%
+
+</h2>
+
+<p>
+
+Average Confidence
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<h2>
+
+{{ business_dashboard.most_common_emotion }}
+
+</h2>
+
+<p>
+
+Top Emotion
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% if insights %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center">
+
+🤖 AI Generated Insights
+
+</h2>
+
+<div class="list-group mt-4">
+
+{% for insight in insights %}
+
+<div class="list-group-item">
+
+💡
+
+{{ insight }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% if nlp_report %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+<h2 class="text-center">
+
+📋 NLP Intelligence Report
+
+</h2>
+
+<table class="table table-striped mt-4">
+
+<tr>
+
+<th>Prediction</th>
+
+<td>{{ nlp_report.prediction }}</td>
+
+</tr>
+
+<tr>
+
+<th>Confidence</th>
+
+<td>{{ nlp_report.confidence }}%</td>
+
+</tr>
+
+<tr>
+
+<th>Confidence Level</th>
+
+<td>{{ nlp_report.confidence_level }}</td>
+
+</tr>
+
+<tr>
+
+<th>Emotion</th>
+
+<td>{{ nlp_report.emotion }}</td>
+
+</tr>
+
+<tr>
+
+<th>Review Type</th>
+
+<td>{{ nlp_report.review_type }}</td>
+
+</tr>
+
+<tr>
+
+<th>Keywords</th>
+
+<td>{{ nlp_report.keywords }}</td>
+
+</tr>
+
+<tr>
+
+<th>Model Agreement</th>
+
+<td>{{ nlp_report.agreement }}%</td>
+
+</tr>
+
+<tr>
+
+<th>Language Quality</th>
+
+<td>{{ nlp_report.language_quality }}</td>
+
+</tr>
+
+</table>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- NLP ANALYSIS -->
+<!-- ================================================= -->
+
+{% if emotion is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+    <h2 class="text-center mb-4">
+        🎭 Natural Language Processing Analysis
+    </h2>
+
+    <div class="row g-4">
+
+        <!-- Emotion Detection -->
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-face-smile fa-3x text-warning mb-3"></i>
+
+                    <h4>Emotion Detection</h4>
+
+                    <hr>
+
+                    <h2 class="text-primary">
+
+                        {{ emotion|capitalize }}
+
+                    </h2>
+
+                    <p class="text-muted">
+
+                        Emotion detected from the review using NLP.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BERT -->
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-brain fa-3x text-success mb-3"></i>
+
+                    <h4>BERT Prediction</h4>
+
+                    <hr>
+
+                    <h2>
+
+                        {{ prediction|capitalize }}
+
+                    </h2>
+
+                    <h5 class="mt-3">
+
+                        {{ confidence }}%
+
+                    </h5>
+
+                    <small class="text-muted">
+
+                        Transformer-based Deep Learning Model
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Consensus -->
+
+        <div class="col-lg-4">
+
+            <div class="card border-0 shadow-sm h-100">
+
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-users fa-3x text-primary mb-3"></i>
+
+                    <h4>Model Agreement</h4>
+
+                    <hr>
+
+                    <h2>
+
+                        {{ consensus["percentage"] }}%
+
+                    </h2>
+
+                    <small>
+
+                        {{ consensus["agreement"] }}/{{ consensus["total"] }} Models Agree
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+
+<!-- ================================================= -->
+<!-- ASPECT BASED SENTIMENT ANALYSIS -->
+<!-- ================================================= -->
+
+{% if aspect_result is defined %}
+
+<div class="card shadow-lg border-0 p-4 mb-5">
+
+    <h2 class="text-center mb-4">
+
+        🎬 Aspect Based Sentiment Analysis
+
+    </h2>
+
+    <div class="row g-4">
+
+        {% for aspect, data in aspect_result.items() %}
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-body">
+
+                    <h4 class="text-center">
+
+                        {{ aspect }}
+
+                    </h4>
+
+                    <hr>
+
+                    <div class="text-center mb-3">
+
+                        {% if data.sentiment == "positive" %}
+
+                        <span class="badge bg-success fs-6 px-3 py-2">
+
+                            😊 Positive
+
+                        </span>
+
+                        {% elif data.sentiment == "negative" %}
+
+                        <span class="badge bg-danger fs-6 px-3 py-2">
+
+                            😞 Negative
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-secondary fs-6 px-3 py-2">
+
+                            ⚪ Not Mentioned
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <p class="text-center">
+
+                        <strong>Confidence</strong>
+
+                    </p>
+
+                    {% if data.confidence != "-" %}
+
+                    <div class="progress mb-3">
+
+                        <div
+
+                            class="progress-bar bg-success"
+
+                            role="progressbar"
+
+                            style="width: {{ data.confidence }}%;">
+
+                            {{ data.confidence }}%
+
+                        </div>
+
+                    </div>
+
+                    {% else %}
+
+                    <p class="text-center text-muted">
+
+                        -
+
+                    </p>
+
+                    {% endif %}
+
+                    <!-- Evidence -->
+
+                    {% if data.sentence %}
+
+                    <div class="alert alert-light mt-3">
+
+                        <strong>
+
+                            🔍 Evidence
+
+                        </strong>
+
+                        <hr>
+
+                        <em>
+
+                            "{{ data.sentence }}"
+
+                        </em>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- ================================================= -->
+<!-- DOWNLOAD REPORT -->
+<!-- ================================================= -->
+
+{% if prediction is defined %}
+
+<div class="text-center mb-5">
+
+<a
+
+href="{{ url_for('prediction.download_report') }}"
+
+class="btn btn-danger btn-lg px-5">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Download AI PDF Report
+
+</a>
+
+</div>
+
+{% endif %}
+
+
+<!-- ================================================= -->
+<!-- DATASET ANALYSIS -->
+<!-- ================================================= -->
+
+<div class="row g-4 mb-5">
+
+<div class="col-lg-6">
+
+<div class="card shadow-sm border-0 p-4">
+
+<h3>
+
+📄 CSV Dataset Analysis
+
+</h3>
+
+<hr>
+
+<form
+
+action="{{ url_for('prediction.csv_prediction') }}"
+
+method="POST"
+
+enctype="multipart/form-data">
+
+<input
+
+type="file"
+
+name="csv"
+
+class="form-control mb-3"
+
+accept=".csv"
+
+required>
+
+<button
+
+class="btn btn-success w-100">
+
+Analyze CSV Dataset
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<div class="col-lg-6">
+
+<div class="card shadow-sm border-0 p-4">
+
+<h3>
+
+📕 PDF Review Analysis
+
+</h3>
+
+<hr>
+
+<form
+
+action="{{ url_for('prediction.pdf_prediction') }}"
+
+method="POST"
+
+enctype="multipart/form-data">
+
+<input
+
+type="file"
+
+name="pdf"
+
+class="form-control mb-3"
+
+accept=".pdf"
+
+required>
+
+<button
+
+class="btn btn-primary w-100">
+
+Analyze PDF Review
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- FOOTER -->
+<!-- ================================================= -->
+
+<footer class="bg-dark text-white mt-5 py-4">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-lg-6">
+
+<h4>
+
+🎬 CineInsight AI
+
+</h4>
+
+<p class="mb-0">
+
+AI Powered Movie Review Intelligence Platform
+
+</p>
+
+<p>
+
+Machine Learning • Deep Learning • NLP • Explainable AI • Analytics
+
+</p>
+
+</div>
+
+<div class="col-lg-6 text-lg-end">
+
+<p class="mb-1">
+
+Integrated M.Tech CSE (Data Science)
+
+</p>
+
+<p class="mb-1">
+
+Built using Flask, Python, Scikit-learn & BERT
+
+</p>
+
+<p class="mb-0">
+
+© 2026 CineInsight AI
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ================================================= -->
+<!-- BACK TO TOP -->
+<!-- ================================================= -->
+
+<button
+
+id="topBtn"
+
+class="btn btn-primary rounded-circle"
+
+style="
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+display:none;
+
+z-index:9999;
+
+width:55px;
+
+height:55px;">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<!-- ================================================= -->
+<!-- LOADING OVERLAY -->
+<!-- ================================================= -->
+
+<div
+
+id="loading"
+
+style="
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(255,255,255,.85);
+
+z-index:99999;">
+
+<div
+
+class="d-flex
+
+justify-content-center
+
+align-items-center
+
+h-100">
+
+<div
+
+class="spinner-border
+
+text-primary"
+
+style="width:4rem;height:4rem;">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<script>
+
+document.querySelectorAll(".progress-bar").forEach(function(bar){
+
+const width=bar.style.width;
+
+bar.style.width="0%";
+
+setTimeout(function(){
+
+bar.style.width=width;
+
+},200);
+
+});
+
+window.onscroll=function(){
+
+const btn=document.getElementById("topBtn");
+
+if(document.body.scrollTop>300 ||
+
+document.documentElement.scrollTop>300)
+
+btn.style.display="block";
+
+else
+
+btn.style.display="none";
+
+};
+
+document.getElementById("topBtn").onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
+document.querySelectorAll("form").forEach(function(form){
+
+form.addEventListener("submit",function(){
+
+document.getElementById("loading").style.display="block";
+
+});
+
+});
+
+document.querySelectorAll("h2").forEach(function(card){
+
+card.style.opacity=0;
+
+setTimeout(function(){
+
+card.style.transition=".8s";
+
+card.style.opacity=1;
+
+},200);
+
+});
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://kit.fontawesome.com/6b3fcb8d74.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

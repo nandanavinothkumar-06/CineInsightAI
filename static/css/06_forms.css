@@ -1,0 +1,240 @@
+/* =====================================================
+   CineInsight AI Forms
+   ===================================================== */
+
+/* Form */
+
+.form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-5);
+}
+
+/* Form Group */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: .6rem;
+}
+
+/* Label */
+
+.form-label {
+
+    color: var(--text-secondary);
+
+    font-size: var(--fs-sm);
+
+    font-weight: var(--fw-medium);
+}
+
+/* Input */
+
+.form-control {
+
+    width: 100%;
+
+    padding: 1rem 1.2rem;
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--blur-md));
+
+    -webkit-backdrop-filter: blur(var(--blur-md));
+
+    border: 1px solid var(--glass-border);
+
+    border-radius: var(--radius-md);
+
+    color: var(--text-primary);
+
+    font-size: var(--fs-md);
+
+    transition: var(--transition-normal);
+}
+
+/* Placeholder */
+
+.form-control::placeholder {
+
+    color: var(--text-muted);
+}
+
+/* Focus */
+
+.form-control:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37,99,235,.2),
+        var(--shadow-glow);
+}
+
+/* Textarea */
+
+textarea.form-control {
+
+    min-height: 180px;
+
+    resize: vertical;
+}
+
+/* Select */
+
+select.form-control {
+
+    cursor: pointer;
+}
+
+/* File Upload */
+
+.file-upload {
+
+    position: relative;
+
+    border: 2px dashed var(--border-color);
+
+    border-radius: var(--radius-lg);
+
+    padding: var(--space-7);
+
+    text-align: center;
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--blur-md));
+
+    cursor: pointer;
+
+    transition: var(--transition-normal);
+}
+
+.file-upload:hover {
+
+    border-color: var(--primary);
+
+    background: rgba(37,99,235,.08);
+
+    box-shadow: var(--shadow-glow);
+}
+
+.file-upload input {
+
+    display: none;
+}
+
+/* Upload Icon */
+
+.upload-icon {
+
+    font-size: 3rem;
+
+    color: var(--primary);
+
+    margin-bottom: var(--space-3);
+}
+
+/* Upload Text */
+
+.upload-text {
+
+    color: var(--text-secondary);
+
+    font-size: var(--fs-md);
+}
+
+/* Search Box */
+
+.search-box {
+
+    position: relative;
+
+    width: 100%;
+}
+
+.search-box input {
+
+    padding-left: 3rem;
+}
+
+.search-box i {
+
+    position: absolute;
+
+    left: 1rem;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--text-muted);
+}
+
+/* Validation */
+
+.input-success {
+
+    border-color: var(--success);
+}
+
+.input-danger {
+
+    border-color: var(--danger);
+}
+
+/* Helper Text */
+
+.form-text {
+
+    color: var(--text-muted);
+
+    font-size: var(--fs-sm);
+}
+
+/* Error */
+
+.error-text {
+
+    color: var(--danger);
+
+    font-size: var(--fs-sm);
+}
+
+/* Success */
+
+.success-text {
+
+    color: var(--success);
+
+    font-size: var(--fs-sm);
+}
+
+/* Checkbox */
+
+.checkbox {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .8rem;
+}
+
+/* Radio */
+
+.radio {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .8rem;
+}

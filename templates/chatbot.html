@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        CineInsight AI | Movie Explorer
+    </title>
+
+    <!-- Bootstrap -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='chatbot.css') }}">
+
+</head>
+
+<body>
+
+<!-- ====================================================== -->
+<!-- NAVBAR -->
+<!-- ====================================================== -->
+
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand fw-bold"
+            href="/">
+
+            <i class="bi bi-film"></i>
+
+            CineInsight AI
+
+        </a>
+
+        <button
+            class="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="/">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="/dashboard">
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="/history">
+
+                        History
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ====================================================== -->
+<!-- HERO -->
+<!-- ====================================================== -->
+
+<section class="hero-section">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-7">
+
+                <span class="hero-badge">
+
+                    Powered by OMDb + TMDb + CineInsight AI
+
+                </span>
+
+                <h1 class="hero-title">
+
+                    Discover Movies Like Never Before
+
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    Search movies, explore ratings,
+                    compare community sentiment,
+                    discover trending releases,
+                    watch trailers and get recommendations.
+
+                </p>
+
+                <form
+                    action="/ask"
+                    method="POST"
+                    class="mt-4">
+
+                    <div class="input-group input-group-lg">
+
+                        <span class="input-group-text">
+
+                            <i class="bi bi-search"></i>
+
+                        </span>
+
+                        <input
+                            type="text"
+                            name="movie"
+                            class="form-control"
+                            placeholder="Search any movie..."
+                            required>
+
+                        <button
+                            class="btn btn-primary">
+
+                            Search
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="col-lg-5 text-center">
+
+                <img
+                    src="{{ url_for('static', filename='images/logo.png') }}"
+                    class="hero-image img-fluid"
+                    alt="CineInsight">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ====================================================== -->
+<!-- TRENDING -->
+<!-- ====================================================== -->
+
+{% if trending %}
+
+<section class="container py-5">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="bi bi-fire"></i>
+
+            Trending Today
+
+        </h2>
+
+        <a
+            href="/trending"
+            class="btn btn-outline-light">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for movie in trending[:6] %}
+
+        <div class="col-lg-2 col-md-4 col-6">
+
+            <div class="movie-card">
+
+                <img
+                    src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                    class="img-fluid rounded">
+
+                <div class="movie-info">
+
+                    <h6>
+
+                        {{ movie.title }}
+
+                    </h6>
+
+                    <small>
+
+                        ⭐ {{ movie.vote_average }}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+<!-- ====================================================== -->
+<!-- TOP RATED -->
+<!-- ====================================================== -->
+
+{% if top_rated %}
+
+<section class="container py-5">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="bi bi-star-fill"></i>
+
+            Top Rated Movies
+
+        </h2>
+
+        <a
+            href="/top_rated"
+            class="btn btn-outline-warning">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for movie in top_rated[:6] %}
+
+        <div class="col-lg-2 col-md-4 col-6">
+
+            <div class="movie-card">
+
+                <img
+                    src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                    class="img-fluid rounded">
+
+                <div class="movie-info">
+
+                    <h6>
+
+                        {{ movie.title }}
+
+                    </h6>
+
+                    <small>
+
+                        ⭐ {{ movie.vote_average }}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+<!-- ====================================================== -->
+<!-- UPCOMING -->
+<!-- ====================================================== -->
+
+{% if upcoming %}
+
+<section class="container py-5">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="bi bi-rocket-takeoff-fill"></i>
+
+            Upcoming Movies
+
+        </h2>
+
+        <a
+            href="/upcoming"
+            class="btn btn-outline-success">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for movie in upcoming[:6] %}
+
+        <div class="col-lg-2 col-md-4 col-6">
+
+            <div class="movie-card">
+
+                <img
+                    src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+                    class="img-fluid rounded">
+
+                <div class="movie-info">
+
+                    <h6>
+
+                        {{ movie.title }}
+
+                    </h6>
+
+                    <small>
+
+                        {{ movie.release_date }}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+<!-- ====================================================== -->
+<!-- SEARCH RESULTS -->
+<!-- ====================================================== -->
+
+{% if movies %}
+
+<section class="container py-5">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="bi bi-search-heart-fill"></i>
+
+            Search Results
+
+        </h2>
+
+    </div>
+
+    <div class="row g-4">
+
+        {% for m in movies %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+
+            <div class="search-card">
+
+                {% if m.Poster != "N/A" %}
+
+                <img
+                    src="{{ m.Poster }}"
+                    class="img-fluid rounded">
+
+                {% else %}
+
+                <img
+                    src="{{ url_for('static', filename='images/default_poster.png') }}"
+                    class="img-fluid rounded">
+
+                {% endif %}
+
+                <div class="p-3">
+
+                    <h5>
+
+                        {{ m.Title }}
+
+                    </h5>
+
+                    <p>
+
+                        {{ m.Year }}
+
+                    </p>
+
+                    <p>
+
+                        {{ m.Type | title }}
+
+                    </p>
+
+                    <a
+                        href="/movie/{{ m.imdbID }}"
+                        class="btn btn-primary w-100">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+<!-- ====================================================== -->
+<!-- MOVIE DETAILS (START) -->
+<!-- ====================================================== -->
+
+{% if movie %}
+
+<section class="container py-5">
+
+<div class="movie-details-card">
+
+<div class="row">
+
+<div class="col-lg-4 text-center">
+
+{% if movie.get("Poster") != "N/A" %}
+
+<img
+    src="{{ movie.get('Poster') }}"
+    class="detail-poster img-fluid">
+
+{% else %}
+
+<img
+    src="{{ url_for('static', filename='images/default_poster.png') }}"
+    class="detail-poster img-fluid">
+
+{% endif %}
+
+</div>
+
+<div class="col-lg-8">
+
+<h1>
+
+{{ movie.get("Title") }}
+
+</h1>
+
+<div class="rating-row">
+
+<span class="rating imdb">
+
+<i class="bi bi-star-fill"></i>
+
+IMDb
+
+{{ movie.get("imdbRating") }}
+
+</span>
+
+<span class="rating community">
+
+<i class="bi bi-people-fill"></i>
+
+Community
+
+{{ community_rating }}/5
+
+</span>
+
+</div>
+
+<div class="movie-meta">
+
+<div>
+
+<strong>Genre</strong>
+
+<p>{{ movie.get("Genre") }}</p>
+
+</div>
+
+<div>
+
+<strong>Runtime</strong>
+
+<p>{{ movie.get("Runtime") }}</p>
+
+</div>
+
+<div>
+
+<strong>Released</strong>
+
+<p>{{ movie.get("Released") }}</p>
+
+</div>
+
+<div>
+
+<strong>Language</strong>
+
+<p>{{ movie.get("Language") }}</p>
+
+</div>
+
+<div>
+
+<strong>Country</strong>
+
+<p>{{ movie.get("Country") }}</p>
+
+</div>
+
+<div>
+
+<strong>Director</strong>
+
+<p>{{ movie.get("Director") }}</p>
+
+</div>
+
+<div>
+
+<strong>Actors</strong>
+
+<p>{{ movie.get("Actors") }}</p>
+
+</div>
+
+<div>
+
+<strong>Writer</strong>
+
+<p>{{ movie.get("Writer") }}</p>
+
+</div>
+
+<div>
+
+<strong>Awards</strong>
+
+<p>{{ movie.get("Awards") }}</p>
+
+</div>
+
+<div>
+
+<strong>Box Office</strong>
+
+<p>{{ movie.get("BoxOffice") }}</p>
+
+</div>
+
+</div>
+
+<hr class="my-4">
+
+<h4>
+
+<i class="bi bi-card-text"></i>
+
+Plot
+
+</h4>
+
+<p class="plot-text">
+
+{{ movie.get("Plot") }}
+
+</p>
+
+<!-- =========================================== -->
+<!-- QUICK ACTION BUTTONS -->
+<!-- =========================================== -->
+
+<div class="mt-4 d-flex flex-wrap gap-3">
+
+{% if trailer %}
+
+<a
+href="{{ trailer }}"
+target="_blank"
+class="btn btn-danger">
+
+<i class="bi bi-play-circle-fill"></i>
+
+Watch Trailer
+
+</a>
+
+{% endif %}
+
+{% if providers %}
+
+<a
+href="/providers/{{ movie_id }}"
+class="btn btn-success">
+
+<i class="bi bi-tv-fill"></i>
+
+Streaming Platforms
+
+</a>
+
+{% endif %}
+
+{% if recommendations %}
+
+<a
+href="/recommend/{{ movie_id }}"
+class="btn btn-primary">
+
+<i class="bi bi-stars"></i>
+
+Similar Movies
+
+</a>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endif %}
+
+<!-- =========================================== -->
+<!-- COMMUNITY SENTIMENT -->
+<!-- =========================================== -->
+
+{% if movie %}
+
+<section class="container py-5">
+
+<h2 class="section-title">
+
+<i class="bi bi-people-fill"></i>
+
+Community Sentiment
+
+</h2>
+
+<div class="row">
+
+<div class="col-lg-3">
+
+<div class="sentiment-card positive-card">
+
+<i class="bi bi-hand-thumbs-up-fill"></i>
+
+<h3>
+
+{{ positive }}
+
+</h3>
+
+<p>
+
+Positive Reviews
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="sentiment-card negative-card">
+
+<i class="bi bi-hand-thumbs-down-fill"></i>
+
+<h3>
+
+{{ negative }}
+
+</h3>
+
+<p>
+
+Negative Reviews
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="sentiment-card rating-card">
+
+<i class="bi bi-star-fill"></i>
+
+<h3>
+
+{{ community_rating }}
+
+</h3>
+
+<p>
+
+Community Rating
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="sentiment-card imdb-card">
+
+<i class="bi bi-award-fill"></i>
+
+<h3>
+
+{{ movie.get("imdbRating") }}
+
+</h3>
+
+<p>
+
+IMDb Rating
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endif %}
+
+<!-- =========================================== -->
+<!-- SIMILAR MOVIES -->
+<!-- =========================================== -->
+
+{% if recommendations %}
+
+<section class="container py-5">
+
+<div class="section-header">
+
+<h2>
+
+<i class="bi bi-collection-play-fill"></i>
+
+You May Also Like
+
+</h2>
+
+</div>
+
+<div class="row g-4">
+
+{% for movie in recommendations[:6] %}
+
+<div class="col-lg-2 col-md-4 col-6">
+
+<div class="movie-card">
+
+<img
+
+src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+
+class="img-fluid rounded">
+
+<div class="movie-info">
+
+<h6>
+
+{{ movie.title }}
+
+</h6>
+
+<small>
+
+⭐ {{ movie.vote_average }}
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+{% endif %}
+
+<!-- =========================================== -->
+<!-- STREAMING -->
+<!-- =========================================== -->
+
+{% if providers %}
+
+<section class="container py-5">
+
+<h2 class="section-title">
+
+<i class="bi bi-tv-fill"></i>
+
+Available On
+
+</h2>
+
+<div class="provider-grid">
+
+{% for provider in providers %}
+
+<div class="provider-card">
+
+<img
+
+src="https://image.tmdb.org/t/p/w200{{ provider.logo_path }}"
+
+class="provider-logo">
+
+<h6>
+
+{{ provider.provider_name }}
+
+</h6>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+{% endif %}
+
+<!-- =========================================== -->
+<!-- FOOTER -->
+<!-- =========================================== -->
+
+<footer class="footer mt-5">
+
+<div class="container text-center">
+
+<h4>
+
+🎬 CineInsight AI Movie Explorer
+
+</h4>
+
+<p>
+
+Discover • Analyze • Recommend Movies
+
+</p>
+
+<div class="footer-links">
+
+<a href="/">
+
+<i class="bi bi-house-fill"></i>
+
+Home
+
+</a>
+
+<a href="/dashboard">
+
+<i class="bi bi-bar-chart-fill"></i>
+
+Dashboard
+
+</a>
+
+<a href="/history">
+
+<i class="bi bi-clock-history"></i>
+
+History
+
+</a>
+
+</div>
+
+<hr>
+
+<p>
+
+Powered by
+
+<strong>
+
+OMDb API
+
+</strong>
+
+•
+
+<strong>
+
+TMDb API
+
+</strong>
+
+•
+
+<strong>
+
+CineInsight AI
+
+</strong>
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

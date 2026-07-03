@@ -1,0 +1,226 @@
+/* =====================================================
+   CineInsight AI Cards
+   ===================================================== */
+
+/* Base Card */
+
+.card {
+
+    position: relative;
+
+    background: var(--glass-bg);
+
+    backdrop-filter: blur(var(--blur-lg));
+    -webkit-backdrop-filter: blur(var(--blur-lg));
+
+    border: 1px solid var(--glass-border);
+
+    border-radius: var(--radius-lg);
+
+    padding: var(--space-6);
+
+    overflow: hidden;
+
+    transition: var(--transition-normal);
+
+    box-shadow: var(--shadow-md);
+}
+
+/* Glass Glow */
+
+.card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.01)
+    );
+
+    opacity: 0;
+
+    transition: var(--transition-normal);
+
+    pointer-events: none;
+}
+
+/* Hover */
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    border-color: rgba(255,255,255,.18);
+
+    box-shadow:
+        var(--shadow-lg),
+        var(--shadow-glow);
+}
+
+.card:hover::before {
+
+    opacity: 1;
+}
+
+/* Card Header */
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: var(--space-5);
+}
+
+/* Card Title */
+
+.card-title {
+
+    font-size: var(--fs-xl);
+
+    font-weight: var(--fw-bold);
+
+    color: var(--text-primary);
+}
+
+/* Card Subtitle */
+
+.card-subtitle {
+
+    font-size: var(--fs-sm);
+
+    color: var(--text-muted);
+
+    margin-top: .25rem;
+}
+
+/* Card Body */
+
+.card-body {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-4);
+}
+
+/* Card Footer */
+
+.card-footer {
+
+    margin-top: var(--space-5);
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: var(--space-3);
+}
+
+/* Small Card */
+
+.card-sm {
+
+    padding: var(--space-4);
+}
+
+/* Large Card */
+
+.card-lg {
+
+    padding: var(--space-7);
+}
+
+/* Dashboard KPI Card */
+
+.stat-card {
+
+    text-align: center;
+}
+
+.stat-number {
+
+    font-size: var(--fs-4xl);
+
+    font-weight: var(--fw-bold);
+
+    color: var(--primary);
+
+    margin-top: var(--space-3);
+}
+
+.stat-label {
+
+    color: var(--text-muted);
+
+    font-size: var(--fs-sm);
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+/* Movie Card */
+
+.movie-card {
+
+    cursor: pointer;
+}
+
+.movie-card img {
+
+    border-radius: var(--radius-md);
+
+    transition: var(--transition-normal);
+}
+
+.movie-card:hover img {
+
+    transform: scale(1.05);
+}
+
+/* Prediction Card */
+
+.prediction-card {
+
+    max-width: 850px;
+
+    margin-inline: auto;
+}
+
+/* Chart Card */
+
+.chart-card {
+
+    min-height: 420px;
+}
+
+/* History Card */
+
+.history-card {
+
+    border-left: 4px solid var(--primary);
+}
+
+/* Positive */
+
+.card-positive {
+
+    border-left: 4px solid var(--success);
+}
+
+/* Negative */
+
+.card-negative {
+
+    border-left: 4px solid var(--danger);
+}

@@ -1,0 +1,137 @@
+<nav class="navbar">
+
+    <!-- Logo -->
+
+    <a
+        href="{{ url_for('prediction.home') }}"
+        class="logo"
+    >
+
+        <img
+            src="{{ url_for('static', filename='images/logos/logo.png') }}"
+            alt="CineInsight AI"
+        >
+
+        <span class="gradient-text">
+
+            CineInsight AI
+
+        </span>
+
+    </a>
+
+    <!-- Navigation Links -->
+
+    <ul class="nav-links">
+
+        <li>
+
+            <a
+                href="{{ url_for('prediction.home') }}"
+            >
+
+                <i class="fa-solid fa-house"></i>
+
+                Home
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                href="{{ url_for('dashboard.dashboard') }}"
+            >
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                href="{{ url_for('history.history') }}"
+            >
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                History
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                href="{{ url_for('chatbot.chatbot') }}"
+            >
+
+                <i class="fa-solid fa-robot"></i>
+
+                AI Assistant
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a
+                href="{{ url_for('movies.trending') }}"
+            >
+
+                <i class="fa-solid fa-film"></i>
+
+                Movies
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <!-- Right Actions -->
+
+    <div class="nav-actions">
+
+        <!-- Theme Toggle -->
+
+        <button
+            class="theme-btn"
+            title="Toggle Theme"
+        >
+
+            <i class="fa-solid fa-moon"></i>
+
+        </button>
+
+        <!-- Login -->
+
+        <a
+            href="{{ url_for('login') }}"
+            class="btn btn-primary btn-sm"
+        >
+
+            <i class="fa-solid fa-user"></i>
+
+            Login
+
+        </a>
+
+    </div>
+
+    <!-- Mobile Menu -->
+
+    <div class="menu-btn">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </div>
+
+</nav>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+
+        {% block title %}
+
+        CineInsight AI
+
+        {% endblock %}
+
+    </title>
+
+    <!-- Favicon -->
+
+    <link
+        rel="icon"
+        href="{{ url_for('static', filename='images/logos/favicon.ico') }}"
+    >
+
+    <!-- Google Fonts -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    {% block extra_css %}
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+
+    <div class="noise"></div>
+
+    <div class="orb orb-1"></div>
+
+    <div class="orb orb-2"></div>
+
+    <div class="orb orb-3"></div>
+
+    <!-- Loading Screen -->
+
+    <div
+        id="loader"
+        class="loader"
+    >
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+
+                <i class="fa-solid fa-film"></i>
+
+            </div>
+
+            <h2>
+
+                CineInsight AI
+
+            </h2>
+
+            <div class="loader-bar">
+
+                <div class="loader-progress">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+
+    {% include "components/navbar.html" %}
+
+    <!-- Main Content -->
+
+    <main class="page">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <!-- Footer -->
+
+    {% include "components/footer.html" %}
+
+    <!-- Scroll To Top -->
+
+    <button
+        id="scrollTop"
+        class="scroll-top"
+    >
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+    <!-- Mouse Glow -->
+
+    <div
+        id="cursorGlow"
+        class="cursor-glow"
+    >
+
+    </div>
+
+    <!-- JS -->
+
+    <script>
+
+        // Scroll To Top
+
+        const scrollBtn =
+            document.getElementById(
+                "scrollTop"
+            );
+
+        window.addEventListener(
+
+            "scroll",
+
+            () => {
+
+                if (
+                    window.scrollY > 300
+                ) {
+
+                    scrollBtn.style.display =
+                        "flex";
+
+                }
+
+                else {
+
+                    scrollBtn.style.display =
+                        "none";
+
+                }
+
+            }
+
+        );
+
+        scrollBtn.onclick = () => {
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        };
+
+    </script>
+
+    <script>
+
+        // Loading Screen
+
+        window.addEventListener(
+
+            "load",
+
+            () => {
+
+                const loader =
+                    document.getElementById(
+                        "loader"
+                    );
+
+                loader.style.opacity =
+                    "0";
+
+                setTimeout(
+
+                    () => {
+
+                        loader.style.display =
+                            "none";
+
+                    },
+
+                    600
+
+                );
+
+            }
+
+        );
+
+    </script>
+
+    <script>
+
+        // Mouse Glow
+
+        const glow =
+            document.getElementById(
+                "cursorGlow"
+            );
+
+        document.addEventListener(
+
+            "mousemove",
+
+            e => {
+
+                glow.style.left =
+                    e.clientX + "px";
+
+                glow.style.top =
+                    e.clientY + "px";
+
+            }
+
+        );
+
+    </script>
+
+    {% block extra_js %}
+
+    {% endblock %}
+
+</body>
+
+</html>
