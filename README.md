@@ -293,20 +293,7 @@ python app.py
 
 ---
 
-# 📷 Screenshots
 
-> Add screenshots of the application here.
-
-Suggested screenshots:
-
-- Home Page
-- AI Analysis Report
-- NLP Pipeline
-- Explainable AI
-- Business Dashboard
-- Aspect-Based Sentiment Analysis
-- CSV Analysis
-- PDF Analysis
 
 ---
 
